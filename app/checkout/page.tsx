@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 const orderItems = [
   {
     name: "The Velvet Cortado",
-    details: "Oat Milk • Regular",
+    details: "Oat Milk • Balanced",
     price: "$5.50",
   },
   {
@@ -13,13 +16,22 @@ const orderItems = [
   },
 ];
 
-const pickupDetails = [
-  { label: "Pickup Location", value: "The DUMBO Roastery" },
-  { label: "Ready By", value: "10-15 Minutes" },
-  { label: "Order Type", value: "Takeaway" },
-];
+const paymentMethods = [
+  { id: "card", eyebrow: "Selected", label: "Card Ending 2419" },
+  { id: "wallet", eyebrow: "Wallet", label: "Apple Pay" },
+  { id: "gift", eyebrow: "Alternative", label: "Gift Balance" },
+] as const;
 
 export default function CheckoutPage() {
+  const [paymentMethod, setPaymentMethod] =
+    useState<(typeof paymentMethods)[number]["id"]>("card");
+  const [placed, setPlaced] = useState(false);
+  const [form, setForm] = useState({
+    name: "Avery Sinclair",
+    phone: "(555) 041-2024",
+    email: "avery@editorial.coffee",
+  });
+
   return (
     <>
       <main className="mx-auto max-w-screen-2xl px-6 pt-32 pb-20 sm:px-8">
@@ -69,19 +81,9 @@ export default function CheckoutPage() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    {pickupDetails.map((detail) => (
-                      <div
-                        key={detail.label}
-                        className="flex items-center justify-between border-b border-outline-variant/20 pb-4"
-                      >
-                        <span className="font-label text-xs uppercase tracking-[0.35em] text-outline">
-                          {detail.label}
-                        </span>
-                        <span className="font-medium text-primary">
-                          {detail.value}
-                        </span>
-                      </div>
-                    ))}
+                    <DetailRow label="Pickup Location" value="The DUMBO Roastery" />
+                    <DetailRow label="Ready By" value="10-15 Minutes" />
+                    <DetailRow label="Order Type" value="Takeaway" />
                   </div>
                 </div>
               </div>
@@ -97,36 +99,22 @@ export default function CheckoutPage() {
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <label className="space-y-3">
-                  <span className="font-label text-xs font-bold uppercase tracking-[0.35em] text-primary">
-                    Full Name
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Avery Sinclair"
-                    className="w-full rounded-xl bg-surface-container-low px-5 py-4 text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </label>
-                <label className="space-y-3">
-                  <span className="font-label text-xs font-bold uppercase tracking-[0.35em] text-primary">
-                    Phone Number
-                  </span>
-                  <input
-                    type="tel"
-                    placeholder="(555) 041-2024"
-                    className="w-full rounded-xl bg-surface-container-low px-5 py-4 text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </label>
-                <label className="space-y-3 md:col-span-2">
-                  <span className="font-label text-xs font-bold uppercase tracking-[0.35em] text-primary">
-                    Email Address
-                  </span>
-                  <input
-                    type="email"
-                    placeholder="avery@editorial.coffee"
-                    className="w-full rounded-xl bg-surface-container-low px-5 py-4 text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </label>
+                <Field
+                  label="Full Name"
+                  value={form.name}
+                  onChange={(value) => setForm((current) => ({ ...current, name: value }))}
+                />
+                <Field
+                  label="Phone Number"
+                  value={form.phone}
+                  onChange={(value) => setForm((current) => ({ ...current, phone: value }))}
+                />
+                <Field
+                  label="Email Address"
+                  value={form.email}
+                  className="md:col-span-2"
+                  onChange={(value) => setForm((current) => ({ ...current, email: value }))}
+                />
               </div>
             </div>
 
@@ -140,24 +128,26 @@ export default function CheckoutPage() {
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                <button className="rounded-xl border border-primary bg-primary px-5 py-4 text-left text-on-primary">
-                  <span className="block font-label text-[10px] uppercase tracking-[0.35em] opacity-80">
-                    Selected
-                  </span>
-                  <span className="mt-2 block font-semibold">Card Ending 2419</span>
-                </button>
-                <button className="rounded-xl border border-outline-variant bg-surface px-5 py-4 text-left text-primary transition-colors hover:border-primary">
-                  <span className="block font-label text-[10px] uppercase tracking-[0.35em] text-outline">
-                    Wallet
-                  </span>
-                  <span className="mt-2 block font-semibold">Apple Pay</span>
-                </button>
-                <button className="rounded-xl border border-outline-variant bg-surface px-5 py-4 text-left text-primary transition-colors hover:border-primary">
-                  <span className="block font-label text-[10px] uppercase tracking-[0.35em] text-outline">
-                    Alternative
-                  </span>
-                  <span className="mt-2 block font-semibold">Gift Balance</span>
-                </button>
+                {paymentMethods.map((method) => (
+                  <button
+                    key={method.id}
+                    onClick={() => setPaymentMethod(method.id)}
+                    className={
+                      paymentMethod === method.id
+                        ? "rounded-xl border border-primary bg-primary px-5 py-4 text-left text-on-primary"
+                        : "rounded-xl border border-outline-variant bg-surface px-5 py-4 text-left text-primary transition-colors hover:border-primary"
+                    }
+                  >
+                    <span
+                      className={`block font-label text-[10px] uppercase tracking-[0.35em] ${
+                        paymentMethod === method.id ? "opacity-80" : "text-outline"
+                      }`}
+                    >
+                      {method.eyebrow}
+                    </span>
+                    <span className="mt-2 block font-semibold">{method.label}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </section>
@@ -188,35 +178,87 @@ export default function CheckoutPage() {
               </div>
 
               <div className="mb-8 space-y-4 border-t border-outline-variant/20 pt-6">
-                <div className="flex justify-between text-secondary">
-                  <span>Subtotal</span>
-                  <span>$13.75</span>
-                </div>
-                <div className="flex justify-between text-secondary">
-                  <span>Service Fee</span>
-                  <span>$0.95</span>
-                </div>
-                <div className="flex justify-between text-secondary">
-                  <span>Tax</span>
-                  <span>$1.18</span>
-                </div>
+                <PriceRow label="Subtotal" value="$13.75" />
+                <PriceRow label="Service Fee" value="$0.95" />
+                <PriceRow label="Tax" value="$1.18" />
                 <div className="flex justify-between pt-2 text-lg font-bold text-primary">
                   <span>Total</span>
                   <span>$15.88</span>
                 </div>
               </div>
 
-              <button className="w-full rounded-xl bg-tertiary px-6 py-5 font-label text-xs font-bold uppercase tracking-[0.35em] text-on-tertiary shadow-xl transition-colors hover:bg-tertiary-container">
+              <button
+                onClick={() => setPlaced(true)}
+                className="w-full rounded-xl bg-tertiary px-6 py-5 font-label text-xs font-bold uppercase tracking-[0.35em] text-on-tertiary shadow-xl transition-colors hover:bg-tertiary-container"
+              >
                 Place Order
               </button>
 
               <p className="mt-6 text-center font-label text-[10px] uppercase tracking-[0.35em] text-outline">
                 Secure checkout • Pickup notification by SMS • Prepared fresh
               </p>
+
+              {placed ? (
+                <div className="mt-8 rounded-xl bg-surface p-6 text-sm leading-relaxed text-secondary">
+                  <p className="font-headline text-2xl text-primary">
+                    Order confirmed.
+                  </p>
+                  <p className="mt-2">
+                    A pickup confirmation has been prepared for {form.name}. We
+                    will notify {form.phone} when the order is ready.
+                  </p>
+                </div>
+              ) : null}
             </div>
           </aside>
         </div>
       </main>
     </>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  className,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}) {
+  return (
+    <label className={className ? `space-y-3 ${className}` : "space-y-3"}>
+      <span className="font-label text-xs font-bold uppercase tracking-[0.35em] text-primary">
+        {label}
+      </span>
+      <input
+        type="text"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="w-full rounded-xl bg-surface-container-low px-5 py-4 text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary"
+      />
+    </label>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+      <span className="font-label text-xs uppercase tracking-[0.35em] text-outline">
+        {label}
+      </span>
+      <span className="font-medium text-primary">{value}</span>
+    </div>
+  );
+}
+
+function PriceRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between text-secondary">
+      <span>{label}</span>
+      <span>{value}</span>
+    </div>
   );
 }

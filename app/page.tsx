@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const featuredProducts = [
   {
@@ -81,13 +82,19 @@ export default function Home() {
               precision for the modern alchemist.
             </p>
             <div className="flex flex-wrap gap-6">
-              <button className="rounded-xl bg-gradient-to-br from-primary to-primary-container px-10 py-4 font-bold text-on-primary shadow-xl transition-transform hover:scale-[0.98] active:scale-95">
+              <Link
+                href="/menu"
+                className="rounded-xl bg-gradient-to-br from-primary to-primary-container px-10 py-4 font-bold text-on-primary shadow-xl transition-transform hover:scale-[0.98] active:scale-95"
+              >
                 Shop the Collection
-              </button>
-              <button className="flex items-center gap-2 border-b border-on-primary/30 pb-1 font-semibold transition-all hover:border-on-primary">
+              </Link>
+              <Link
+                href="/menu#seasonal"
+                className="flex items-center gap-2 border-b border-on-primary/30 pb-1 font-semibold transition-all hover:border-on-primary"
+              >
                 Discover Our Blends
                 <ArrowRightIcon className="size-4" />
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -125,9 +132,12 @@ export default function Home() {
                 </span>
                 <span className="text-secondary line-through">$9.00</span>
               </div>
-              <button className="w-full rounded-xl bg-primary px-12 py-4 font-bold text-on-primary transition-all hover:shadow-2xl md:w-auto">
+              <Link
+                href="/order"
+                className="block w-full rounded-xl bg-primary px-12 py-4 text-center font-bold text-on-primary transition-all hover:shadow-2xl md:w-auto"
+              >
                 Reserve a Cup
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -167,10 +177,13 @@ export default function Home() {
                 &quot;The Artisanal Editorial isn&apos;t just a shop; it&apos;s a
                 living journal of flavor and community.&quot;
               </p>
-              <button className="flex items-center gap-4 font-label text-xs font-bold uppercase tracking-[0.35em] text-primary transition-all hover:gap-6">
+              <Link
+                href="/our-story"
+                className="flex items-center gap-4 font-label text-xs font-bold uppercase tracking-[0.35em] text-primary transition-all hover:gap-6"
+              >
                 Read Our Full Story
                 <ExternalLinkIcon className="size-4" />
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -186,9 +199,12 @@ export default function Home() {
                   Single-Origin Reserve
                 </h2>
               </div>
-              <button className="hidden border-b-2 border-primary pb-1 font-bold text-primary md:block">
+              <Link
+                href="/menu"
+                className="hidden border-b-2 border-primary pb-1 font-bold text-primary md:block"
+              >
                 View All Beans
-              </button>
+              </Link>
             </div>
             <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
               {featuredProducts.map((product) => (
@@ -214,12 +230,13 @@ export default function Home() {
                       <span className="font-bold text-primary">
                         {product.price}
                       </span>
-                      <button
+                      <Link
+                        href="/order"
                         aria-label={`Add ${product.title} to cart`}
                         className="text-primary transition-colors hover:text-tertiary"
                       >
                         <CartPlusIcon className="size-5" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </article>
@@ -234,7 +251,10 @@ export default function Home() {
               From the Journal
             </h2>
             <div className="grid grid-cols-1 gap-6 md:h-[600px] md:grid-cols-12">
-              <article className="group relative overflow-hidden rounded-xl md:col-span-8">
+              <Link
+                href="/journal"
+                className="group relative overflow-hidden rounded-xl md:col-span-8"
+              >
                 <Image
                   src={journalEntries[0].image}
                   alt={journalEntries[0].alt}
@@ -250,10 +270,11 @@ export default function Home() {
                     {journalEntries[0].title}
                   </h3>
                 </div>
-              </article>
+              </Link>
               <div className="grid gap-6 md:col-span-4 md:grid-rows-2">
                 {journalEntries.slice(1).map((entry) => (
-                  <article
+                  <Link
+                    href="/journal"
                     key={entry.title}
                     className="group relative overflow-hidden rounded-xl"
                   >
@@ -269,7 +290,7 @@ export default function Home() {
                         {entry.title}
                       </h3>
                     </div>
-                  </article>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -343,9 +364,12 @@ export default function Home() {
                 placeholder="Email Address"
                 className="w-full border-b border-outline bg-transparent py-2 text-primary placeholder:text-outline focus:border-primary focus:outline-none"
               />
-              <button className="absolute right-0 bottom-2 text-xs font-bold uppercase tracking-[0.35em] text-primary">
+              <Link
+                href="/journal"
+                className="absolute right-0 bottom-2 text-xs font-bold uppercase tracking-[0.35em] text-primary"
+              >
                 Join
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const espressoDrinks = [
   {
@@ -214,10 +215,13 @@ export default function MenuPage() {
                     Our 18-hour cold brew infused with botanical elderflower
                     syrup and topped with a sprig of fresh mint.
                   </p>
-                  <button className="flex items-center font-label text-xs font-bold uppercase tracking-[0.35em] text-tertiary transition-transform hover:translate-x-2">
+                  <Link
+                    href="/order"
+                    className="flex items-center font-label text-xs font-bold uppercase tracking-[0.35em] text-tertiary transition-transform hover:translate-x-2"
+                  >
                     Explore The Blend
                     <ArrowRightIcon className="ml-2 size-4" />
-                  </button>
+                  </Link>
                 </div>
               </article>
 

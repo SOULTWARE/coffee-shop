@@ -7,11 +7,19 @@ const navigationItems = [
   { label: "Menu", href: "/menu" },
   { label: "Locations", href: "/locations" },
   { label: "Our Story", href: "/our-story" },
-  { label: "Journal", href: "#" },
+  { label: "Journal", href: "/journal" },
 ];
 
 export function SiteNavbar() {
   const pathname = usePathname();
+
+  function isActive(href: string) {
+    if (href === "/menu") {
+      return pathname === "/menu" || pathname === "/order" || pathname === "/checkout";
+    }
+
+    return pathname === href;
+  }
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-[#fcf9f4]/80 shadow-[0_20px_40px_rgba(28,28,25,0.06)] backdrop-blur-md">
@@ -26,7 +34,7 @@ export function SiteNavbar() {
               key={item.label}
               href={item.href}
               className={
-                pathname === item.href
+                isActive(item.href)
                   ? "border-b-2 border-primary pb-1 text-primary"
                   : "text-secondary transition-colors duration-300 hover:text-primary"
               }
@@ -37,9 +45,9 @@ export function SiteNavbar() {
         </div>
 
         <div className="flex items-center space-x-3 sm:space-x-6">
-          <button aria-label="Shopping bag" className="text-primary">
+          <Link href="/checkout" aria-label="Shopping bag" className="text-primary">
             <ShoppingBagIcon className="size-6" />
-          </button>
+          </Link>
           <Link
             href="/order"
             className="rounded-xl bg-primary px-5 py-3 font-semibold text-on-primary transition-transform hover:scale-95 active:scale-90 sm:px-8"
