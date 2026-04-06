@@ -18,6 +18,15 @@
   --tertiary: #8a5d2a;
   --outline: #b4a18f;
   --outline-variant: #cabca9;
+  --surface-variant: #e7ddd0;
+  --on-surface-variant: #5b514d;
+  --primary-fixed: #3e2b23;
+  --on-primary-fixed: #fcf9f4;
+  --on-background: #33231d;
+  --tertiary-container: #a66e33;
+  --on-tertiary: #fcf9f4;
+  --tertiary-fixed-dim: #8a5d2a;
+  --error: #9b3d31;
 }
 
 @theme inline {
@@ -38,6 +47,15 @@
   --color-tertiary: var(--tertiary);
   --color-outline: var(--outline);
   --color-outline-variant: var(--outline-variant);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-on-background: var(--on-background);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-error: var(--error);
   --font-body: var(--font-manrope);
   --font-headline: var(--font-cormorant-garamond);
   --font-label: var(--font-noto-serif);
@@ -49,6 +67,11 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--primary-fixed);
+  color: var(--on-primary-fixed);
 }
 
 body {
@@ -69,4 +92,13 @@ input {
 
 img {
   display: block;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

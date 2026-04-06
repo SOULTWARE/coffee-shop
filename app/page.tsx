@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { SiteNavbar } from "@/components/site-navbar";
 
 const featuredProducts = [
   {
@@ -56,7 +55,6 @@ const journalEntries = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-on-surface">
-      <SiteNavbar />
       <main className="pt-20">
         <section className="relative flex min-h-[921px] items-center overflow-hidden px-6 sm:px-8 md:px-16">
           <div className="absolute inset-0 z-0">

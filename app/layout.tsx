@@ -4,6 +4,7 @@ import {
   Manrope,
   Noto_Serif,
 } from "next/font/google";
+import { SiteNavbar } from "@/components/site-navbar";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -40,6 +41,7 @@ export default function RootLayout({
       className={`${cormorantGaramond.variable} ${manrope.variable} ${notoSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-on-surface font-body">
+        <SiteNavbar />
         {children}
       </body>
     </html>

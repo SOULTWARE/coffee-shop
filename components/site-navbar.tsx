@@ -1,44 +1,51 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const navigationItems = [
-  { label: "Menu", href: "#", active: true },
-  { label: "Locations", href: "#" },
-  { label: "Our Story", href: "#" },
+  { label: "Menu", href: "/menu" },
+  { label: "Locations", href: "/locations" },
+  { label: "Our Story", href: "/our-story" },
   { label: "Journal", href: "#" },
 ];
 
 export function SiteNavbar() {
+  const pathname = usePathname();
+
   return (
     <nav className="fixed top-0 z-50 w-full bg-[#fcf9f4]/80 shadow-[0_20px_40px_rgba(28,28,25,0.06)] backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-screen-2xl items-center justify-between gap-6 px-6 sm:px-8">
-        <a href="#" className="font-headline text-3xl italic text-primary">
+        <Link href="/" className="font-headline text-3xl italic text-primary">
           The Artisanal Editorial
-        </a>
+        </Link>
 
         <div className="hidden items-center space-x-10 font-label font-semibold tracking-tight md:flex">
           {navigationItems.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
               className={
-                item.active
+                pathname === item.href
                   ? "border-b-2 border-primary pb-1 text-primary"
                   : "text-secondary transition-colors duration-300 hover:text-primary"
               }
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="flex items-center space-x-3 sm:space-x-6">
-          <button
-            aria-label="Shopping bag"
-            className="text-primary"
-          >
+          <button aria-label="Shopping bag" className="text-primary">
             <ShoppingBagIcon className="size-6" />
           </button>
-          <button className="rounded-xl bg-primary px-5 py-3 font-semibold text-on-primary transition-transform hover:scale-95 active:scale-90 sm:px-8">
+          <Link
+            href="/order"
+            className="rounded-xl bg-primary px-5 py-3 font-semibold text-on-primary transition-transform hover:scale-95 active:scale-90 sm:px-8"
+          >
             Order Now
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
