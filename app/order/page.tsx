@@ -12,3 +12,5 @@ export default async function OrderPage({ searchParams }: OrderPageProps) {
 
   return <OrderPageClient pickupLocation={pickupLocation} />;
 }
+
+export const runtime = "edge";
