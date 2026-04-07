@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { soultwareFooterNote, soultwareLinks } from "@/lib/soultware";
 
 const featuredProducts = [
   {
@@ -60,11 +61,11 @@ export default function Home() {
         <section className="relative flex min-h-[921px] items-center overflow-hidden px-6 sm:px-8 md:px-16">
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbsr9sbET4KI0g3z-I4hLgXBjB1SeQHPZ-NwMYpGpY0Py4NUna-PpyfbFBM5X8VtVws-WgBaUDMa5TFflWlAV9uUy4BIUZ0j9SWXxcPO0kw1RSEteYHP3-00WpmEH2xRrTej2QeIrZHJ-BFtvik32-_e6JvVb_rXougZ0Ka-zAasoICRYK0SPwBKqlRdjD4KU0zLxH5sRaGFArzKwXekE9-HlF96R68LUdJlltQsNr8uXVJEKP9BTR3LgCJDW1o8YJJJMFJE0dCA"
-              alt="Cinematic wide shot of a high-end minimalist coffee bar with warm atmospheric lighting, brass accents, and a professional espresso machine."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4XQMHdcdBn4eYJlUBCYip2f_jAq1eq7l43zMl1jqfDgfvkMdvuKvGoMmw68stXuE-C0JJ65uxRmmf1rCerGWo54Kk6NPCYnk-XPnLuUKzKnOsfViXF9hbXaO0n5wvQG7K7XBOXnm9y-6E_JBPS1ZrvLf3qTTenQVBl8pZijuj097fBqO5ZRJARaOv6EJv591mC0emckgnH7BHxlczDlF0bQQMDm2gidxgK-eb3Dkekgg1CaReTnYIeZ_J-C_JqutqDr11MWTLEw"
+              alt="Close-up of a rich espresso shot with crema in a ceramic cup under warm morning light."
               fill
               priority
-              className="object-cover grayscale-[20%] contrast-[1.1]"
+              className="object-cover grayscale-[10%] contrast-[1.08]"
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#1c1c19]/80 to-transparent" />
@@ -305,12 +306,26 @@ export default function Home() {
               The Artisanal Editorial
             </div>
             <p className="leading-relaxed text-secondary">
-              Crafting moments of clarity through the science and soul of
-              coffee.
+              Premium hospitality website demo by Soultware, built to showcase
+              performance, SEO, and conversion-focused design.
             </p>
             <div className="flex gap-4">
-              <ShareIcon className="size-5 text-primary" />
-              <MailIcon className="size-5 text-primary" />
+              <a
+                href={soultwareLinks.home}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Visit Soultware"
+              >
+                <ShareIcon className="size-5 text-primary" />
+              </a>
+              <a
+                href={soultwareLinks.contact}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Contact Soultware"
+              >
+                <MailIcon className="size-5 text-primary" />
+              </a>
             </div>
           </div>
           <div className="space-y-6">
@@ -319,16 +334,32 @@ export default function Home() {
             </span>
             <ul className="space-y-4 text-secondary">
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Single Origins</a>
+                <a href={soultwareLinks.work} target="_blank" rel="noreferrer">
+                  Single Origins
+                </a>
               </li>
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Wholesale</a>
+                <a
+                  href={soultwareLinks.services}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Wholesale
+                </a>
               </li>
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Brew Equipment</a>
+                <a
+                  href={soultwareLinks.services}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Brew Equipment
+                </a>
               </li>
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Gift Cards</a>
+                <a href={soultwareLinks.contact} target="_blank" rel="noreferrer">
+                  Gift Cards
+                </a>
               </li>
             </ul>
           </div>
@@ -338,16 +369,28 @@ export default function Home() {
             </span>
             <ul className="space-y-4 text-secondary">
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Privacy Policy</a>
+                <a href={soultwareLinks.home} target="_blank" rel="noreferrer">
+                  Privacy Policy
+                </a>
               </li>
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Terms of Service</a>
+                <a href={soultwareLinks.terms} target="_blank" rel="noreferrer">
+                  Terms of Service
+                </a>
               </li>
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Careers</a>
+                <a
+                  href={soultwareLinks.careers}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Careers
+                </a>
               </li>
               <li className="transition-colors hover:text-[#0e2d15]">
-                <a href="#">Press Kit</a>
+                <a href={soultwareLinks.about} target="_blank" rel="noreferrer">
+                  Press Kit
+                </a>
               </li>
             </ul>
           </div>
@@ -365,7 +408,9 @@ export default function Home() {
                 className="w-full border-b border-outline bg-transparent py-2 text-primary placeholder:text-outline focus:border-primary focus:outline-none"
               />
               <Link
-                href="/journal"
+                href={soultwareLinks.contact}
+                target="_blank"
+                rel="noreferrer"
                 className="absolute right-0 bottom-2 text-xs font-bold uppercase tracking-[0.35em] text-primary"
               >
                 Join
@@ -375,7 +420,7 @@ export default function Home() {
         </div>
         <div className="mx-auto mt-16 max-w-screen-2xl border-t border-outline-variant/30 pt-8 text-center md:text-left">
           <p className="text-xs tracking-[0.2em] text-[#817471]">
-            © 2024 The Artisanal Editorial. Crafted for the modern alchemist.
+            © 2026 Soultware. {soultwareFooterNote}
           </p>
         </div>
       </footer>

@@ -58,7 +58,7 @@ export default function LocationsPage() {
   const [activeFilter, setActiveFilter] =
     useState<(typeof filters)[number]>("Nearby");
   const [query, setQuery] = useState("");
-  const [selectedTitle, setSelectedTitle] = useState(locations[0].title);
+  const [selectedTitle, setSelectedTitle] = useState<string>(locations[0].title);
   const [zoom, setZoom] = useState(100);
 
   const visibleLocations = locations.filter((location) => {

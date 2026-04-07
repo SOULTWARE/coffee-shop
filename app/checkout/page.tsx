@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { soultwareLinks } from "@/lib/soultware";
 
 const orderItems = [
   {
@@ -207,6 +209,15 @@ export default function CheckoutPage() {
                     A pickup confirmation has been prepared for {form.name}. We
                     will notify {form.phone} when the order is ready.
                   </p>
+                  <Link
+                    href={soultwareLinks.contact}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 border-b border-primary pb-1 font-label text-xs font-bold uppercase tracking-[0.35em] text-primary"
+                  >
+                    Start a Project with Soultware
+                    <ArrowUpRightIcon className="size-4" />
+                  </Link>
                 </div>
               ) : null}
             </div>
@@ -260,5 +271,21 @@ function PriceRow({ label, value }: { label: string; value: string }) {
       <span>{label}</span>
       <span>{value}</span>
     </div>
+  );
+}
+
+function ArrowUpRightIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className={className}
+    >
+      <path d="M7 17 17 7" />
+      <path d="M9 7h8v8" />
+    </svg>
   );
 }

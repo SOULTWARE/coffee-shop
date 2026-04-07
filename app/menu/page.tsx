@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { soultwareFooterNote, soultwareLinks } from "@/lib/soultware";
 
 const espressoDrinks = [
   {
@@ -323,7 +324,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.services}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Wholesale
                 </a>
@@ -331,7 +334,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.blog}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Brewing Guides
                 </a>
@@ -339,7 +344,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.contact}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Subscription
                 </a>
@@ -347,7 +354,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.careers}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Careers
                 </a>
@@ -362,7 +371,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.home}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Privacy Policy
                 </a>
@@ -370,7 +381,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.terms}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Terms of Service
                 </a>
@@ -378,7 +391,9 @@ export default function MenuPage() {
               <li>
                 <a
                   className="text-sm text-secondary transition-colors hover:text-[#0e2d15]"
-                  href="#"
+                  href={soultwareLinks.contact}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Contact Us
                 </a>
@@ -392,21 +407,24 @@ export default function MenuPage() {
             <div className="flex space-x-4">
               <a
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-highest transition-all duration-300 hover:bg-primary hover:text-on-primary"
-                href="#"
+                href={soultwareLinks.home}
+                target="_blank"
+                rel="noreferrer"
               >
                 <ShareIcon className="size-5" />
               </a>
               <a
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-highest transition-all duration-300 hover:bg-primary hover:text-on-primary"
-                href="#"
+                href={soultwareLinks.contact}
+                target="_blank"
+                rel="noreferrer"
               >
                 <MailIcon className="size-5" />
               </a>
             </div>
             <div className="pt-4">
               <p className="text-[10px] leading-relaxed uppercase tracking-[0.2em] text-secondary">
-                © 2024 The Artisanal Editorial. Crafted for the modern
-                alchemist.
+                © 2026 Soultware. {soultwareFooterNote}
               </p>
             </div>
           </div>
