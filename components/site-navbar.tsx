@@ -50,7 +50,8 @@ export function SiteNavbar() {
           </Link>
           <Link
             href="/order"
-            className="rounded-xl bg-primary px-5 py-3 font-semibold text-on-primary transition-transform hover:scale-95 active:scale-90 sm:px-8"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm leading-none font-semibold text-on-primary transition-transform hover:scale-95 active:scale-90 sm:px-8"
+            style={{ color: "var(--on-primary)" }}
           >
             Order Now
           </Link>

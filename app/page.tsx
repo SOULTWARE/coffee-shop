@@ -85,7 +85,8 @@ export default function Home() {
             <div className="flex flex-wrap gap-6">
               <Link
                 href="/menu"
-                className="rounded-xl bg-gradient-to-br from-primary to-primary-container px-10 py-4 font-bold text-on-primary shadow-xl transition-transform hover:scale-[0.98] active:scale-95"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container px-10 py-4 text-sm leading-none font-bold text-on-primary shadow-xl transition-transform hover:scale-[0.98] active:scale-95"
+                style={{ color: "var(--on-primary)" }}
               >
                 Shop the Collection
               </Link>
@@ -135,7 +136,8 @@ export default function Home() {
               </div>
               <Link
                 href="/order"
-                className="block w-full rounded-xl bg-primary px-12 py-4 text-center font-bold text-on-primary transition-all hover:shadow-2xl md:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-12 py-4 text-sm leading-none font-bold text-on-primary transition-all hover:shadow-2xl md:w-auto"
+                style={{ color: "var(--on-primary)" }}
               >
                 Reserve a Cup
               </Link>
