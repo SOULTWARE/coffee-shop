@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 
 const categoryTabs = [
   "Signature Espresso",
@@ -79,6 +80,13 @@ type OrderPageClientProps = {
   pickupLocation?: string;
 };
 
+function PickupLocationNote({ pickupLocation }: OrderPageClientProps) {
+  const searchParams = useSearchParams();
+  const location = pickupLocation ?? searchParams.get("location");
+
+  return location ? <> Pickup set for {location}.</> : null;
+}
+
 export function OrderPageClient({ pickupLocation }: OrderPageClientProps) {
   const [activeCategory, setActiveCategory] =
     useState<(typeof categoryTabs)[number]>("Signature Espresso");
@@ -144,7 +152,13 @@ export function OrderPageClient({ pickupLocation }: OrderPageClientProps) {
         <p className="max-w-xl text-lg leading-relaxed text-secondary">
           Choose from our meticulously sourced seasonal beans and handcrafted
           botanicals. Each cup is an alchemy of precision and passion.
-          {pickupLocation ? ` Pickup set for ${pickupLocation}.` : ""}
+          <Suspense
+            fallback={
+              pickupLocation ? ` Pickup set for ${pickupLocation}.` : null
+            }
+          >
+            <PickupLocationNote pickupLocation={pickupLocation} />
+          </Suspense>
         </p>
       </header>
 
